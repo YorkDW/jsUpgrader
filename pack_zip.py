@@ -3,7 +3,7 @@ import shutil, os
 path = os.path.abspath('.')
 cur_floder_name = os.path.basename(path)
 deploy_floder_name = f"{cur_floder_name}_deploy"
-deploy_path = os.path.join(cur_floder_name, deploy_floder_name)
+deploy_path = os.path.join(path, deploy_floder_name)
 
 shutil.rmtree(deploy_path, ignore_errors=True)
 os.mkdir(deploy_path)
