@@ -394,8 +394,11 @@ class CodeGenerator:
     def trystatement(self, stmt):
         result = "try" + self.space
         result += self.generate_statement(stmt['block'])
-        result = result[:-1]
-        result += "\n".join([self.generate_statement(s) for s in stmt['handlers']])
+        if stmt.get('handlers'):
+            result = result[:-1]
+            result += "\n".join([self.generate_statement(s) for s in stmt['handlers']])
+        elif stmt.get('handler'):
+            result += self.generate_statement(stmt['handler'])
         return result
 
     def catchclause(self, stmt):

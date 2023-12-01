@@ -16,7 +16,7 @@ def prod_run():
     p.run()
     exit()
 
-# prod_run()
+prod_run()
 
 example_file_name = "example.js"
 

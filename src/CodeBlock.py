@@ -248,7 +248,8 @@ ES2020_replacement_data = {
     "??=": "+= ctx.NullishCoalescingAssignment +",
     "??": "* ctx.NullishCoalescing *",
     "?.[": ".optionalChainingArray[",
-    "?.": ".optionalChaining."
+    "?.": ".optionalChaining.",
+    " catch {": " catch (exceptionStub){"
 }
 
 def stub_ES2020(code_lines) -> list[str]:
