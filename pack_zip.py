@@ -19,3 +19,5 @@ for folder_name in ['src', 'jscodegen']:
         shutil.copy2(os.path.join(path, folder_name, src_lib), os.path.join(deploy_path, folder_name))
     
 shutil.make_archive(deploy_floder_name, 'zip', deploy_path)
+shutil.rmtree(deploy_path, ignore_errors=True)
+

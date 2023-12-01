@@ -28,7 +28,7 @@ class CodeBlock:
         try:
             js_lines = jscodegen.generate(code_dict).split('\n')
         except Exception as e:
-            with open('t.json', 'w') as f:
+            with open('dump.json', 'w') as f:
                 json.dump(code_dict, f, indent=2)
             raise e
         
@@ -218,6 +218,8 @@ def handle_func_param(param) -> list[str]:
         return [param.data["left"].data["name"]]
     elif param.data['type'] == "ObjectPattern":
         return handle_func_param_object(param)
+    elif param.data['type'] == "ArrayPattern":
+        return [elem.data['name'] for elem in param.data['elements']]
     else:
         raise TypeError(f"Unhandled func param type: {param.data['type']}")
     
@@ -241,6 +243,8 @@ def after(c:CodeBlock, data):
     data['black_list'].pop()
 
 ES2020_replacement_data = {
+    "||=": "+= ctx.logicalOrAssignment +",
+    "&&=": "+= ctx.logicalAndAssignment +",
     "??=": "+= ctx.NullishCoalescingAssignment +",
     "??": "* ctx.NullishCoalescing *",
     "?.[": ".optionalChainingArray[",

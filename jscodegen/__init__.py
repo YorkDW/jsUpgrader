@@ -432,6 +432,8 @@ class CodeGenerator:
                 params.append(self.assignmentexpression(param, Precedence.Sequence))
             elif param["type"] == "ObjectPattern":
                 params.append(self.objectexpression(param, Precedence.Sequence))
+            elif param["type"] == "ArrayPattern":
+                params.append(self.arrayexpression(param, Precedence.Sequence))
             
         return '(' + ", ".join(params) + ')'
 
